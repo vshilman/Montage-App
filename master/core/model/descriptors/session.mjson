@@ -1,0 +1,64 @@
+{
+  "blueprint_session_active": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "active",
+      "blueprint": {"@": "root"},
+      "valueType": "boolean"
+    }
+  },
+  "propertyblueprint": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "ended-at",
+      "blueprint": {"@": "root"},
+      "valueType": "number"
+    }
+  },
+  "blueprint_session_resource": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "resource",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "propertyblueprint2": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "started-at",
+      "blueprint": {"@": "root"},
+      "valueType": "number"
+    }
+  },
+  "blueprint_session_tty": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "tty",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "blueprint_session_username": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "username",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "root": {
+    "prototype": "core/model/model-descriptor",
+    "properties": {
+      "name": "Session",
+      "propertyBlueprints": [
+        {"@": "blueprint_session_active"},
+        {"@": "propertyblueprint"},
+        {"@": "blueprint_session_resource"},
+        {"@": "propertyblueprint2"},
+        {"@": "blueprint_session_tty"},
+        {"@": "blueprint_session_username"}
+      ]
+    }
+  }
+}

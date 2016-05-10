@@ -1,0 +1,177 @@
+{
+  "blueprint_shareafp_afp3_privileges": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "afp3_privileges",
+      "blueprint": {"@": "root"},
+      "valueType": "boolean"
+    }
+  },
+  "blueprint_shareafp_comment": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "comment",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "blueprint_shareafp_default_directory_perms": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "default_directory_perms",
+      "blueprint": {"@": "root"},
+      "valueType": "object",
+      "valueObjectPrototypeName": "UnixPermissions"
+    }
+  },
+  "blueprint_shareafp_default_file_perms": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "default_file_perms",
+      "blueprint": {"@": "root"},
+      "valueType": "object",
+      "valueObjectPrototypeName": "UnixPermissions"
+    }
+  },
+  "blueprint_shareafp_default_umask": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "default_umask",
+      "blueprint": {"@": "root"},
+      "valueType": "object",
+      "valueObjectPrototypeName": "UnixPermissions"
+    }
+  },
+  "blueprint_shareafp_groups_allow": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "groups_allow",
+      "blueprint": {"@": "root"},
+      "valueType": "array"
+    }
+  },
+  "blueprint_shareafp_groups_deny": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "groups_deny",
+      "blueprint": {"@": "root"},
+      "valueType": "array"
+    }
+  },
+  "blueprint_shareafp_hosts_allow": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "hosts_allow",
+      "blueprint": {"@": "root"},
+      "valueType": "array"
+    }
+  },
+  "blueprint_shareafp_hosts_deny": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "hosts_deny",
+      "blueprint": {"@": "root"},
+      "valueType": "array"
+    }
+  },
+  "blueprint_shareafp_no_stat": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "no_stat",
+      "blueprint": {"@": "root"},
+      "valueType": "boolean"
+    }
+  },
+  "blueprint_shareafp_read_only": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "read_only",
+      "blueprint": {"@": "root"},
+      "valueType": "boolean"
+    }
+  },
+  "blueprint_shareafp_ro_list": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "ro_list",
+      "blueprint": {"@": "root"},
+      "valueType": "array"
+    }
+  },
+  "blueprint_shareafp_rw_list": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "rw_list",
+      "blueprint": {"@": "root"},
+      "valueType": "array"
+    }
+  },
+  "blueprint_shareafp_time_machine": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "time_machine",
+      "blueprint": {"@": "root"},
+      "valueType": "boolean"
+    }
+  },
+  "blueprint_shareafp_type": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "type",
+      "blueprint": {"@": "root"},
+      "enumValues": [
+        "share-afp"
+      ]
+    }
+  },
+  "blueprint_shareafp_users_allow": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "users_allow",
+      "blueprint": {"@": "root"},
+      "valueType": "array"
+    }
+  },
+  "blueprint_shareafp_users_deny": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "users_deny",
+      "blueprint": {"@": "root"},
+      "valueType": "array"
+    }
+  },
+  "blueprint_shareafp_zero_dev_numbers": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "zero_dev_numbers",
+      "blueprint": {"@": "root"},
+      "valueType": "boolean"
+    }
+  },
+  "root": {
+    "prototype": "core/model/model-descriptor",
+    "properties": {
+      "name": "ShareAfp",
+      "propertyBlueprints": [
+        {"@": "blueprint_shareafp_afp3_privileges"},
+        {"@": "blueprint_shareafp_comment"},
+        {"@": "blueprint_shareafp_default_directory_perms"},
+        {"@": "blueprint_shareafp_default_file_perms"},
+        {"@": "blueprint_shareafp_default_umask"},
+        {"@": "blueprint_shareafp_groups_allow"},
+        {"@": "blueprint_shareafp_groups_deny"},
+        {"@": "blueprint_shareafp_hosts_allow"},
+        {"@": "blueprint_shareafp_hosts_deny"},
+        {"@": "blueprint_shareafp_no_stat"},
+        {"@": "blueprint_shareafp_read_only"},
+        {"@": "blueprint_shareafp_ro_list"},
+        {"@": "blueprint_shareafp_rw_list"},
+        {"@": "blueprint_shareafp_time_machine"},
+        {"@": "blueprint_shareafp_type"},
+        {"@": "blueprint_shareafp_users_allow"},
+        {"@": "blueprint_shareafp_users_deny"},
+        {"@": "blueprint_shareafp_zero_dev_numbers"}
+      ]
+    }
+  }
+}

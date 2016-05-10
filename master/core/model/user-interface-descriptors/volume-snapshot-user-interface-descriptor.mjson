@@ -1,0 +1,12 @@
+{
+    "root": {
+        "prototype": "montage/core/meta/user-interface-descriptor",
+        "properties": {
+            "collectionInspectorComponentModule": {"%": "ui/controls/viewer.reel"},
+            "collectionNameExpression": "'Snapshots'",
+            "inspectorComponentModule": {"%": "ui/inspectors/snapshot.reel"},
+            "creatorComponentModule": {"%": "ui/inspectors/snapshot.reel"},
+            "nameExpression": "id.defined() ? id : 'Create a snapshot'"
+        }
+    }
+}
