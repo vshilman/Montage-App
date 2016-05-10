@@ -1,0 +1,116 @@
+.Notification { position: relative; }
+
+.Notification:nth-child(even) { background: rgba(0,0,0,.1); }
+
+/* Notification Border */
+
+.Notification:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    border:1px solid transparent;
+}
+
+.Notification.has-infoExpanded:before {
+    border-color: #DFE4E4;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius:  4px;
+}
+
+.Notification.error:before { border-color: #E0003A; }
+
+.Notification-body {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .85em;
+    letter-spacing: .5px;
+    margin-top: 0.1em;
+}
+
+.Notification-overview {
+    padding: .5em;
+    flex: 1;
+}
+
+.Notification-overview > div {
+    display: flex;
+    align-items: center;
+}
+
+.Notification-overview > div:first-child {
+    margin-bottom: .5em;
+}
+
+.Notification-time,
+.Notification-service {
+    font-size: .75em;
+}
+
+.Notification-time {
+    margin-right: .5em;
+}
+
+.Notification-progress {
+    width:  80%;
+    margin-left: .5em;
+}
+
+.Notification.error .Notification-progress  { background-color: #E0003A; }
+.Notification.success .Notification-progress .Progress-bar { background-color: #1E963F; }
+
+/* Info Container */
+
+.Notification-info {
+    display: none;
+    width: 100%;
+    padding: .5rem;
+    background: #DFE4E4;
+    color: #16171A;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius:  4px;
+    box-shadow: 0 2px 2px rgba(0,0,0,.3);
+}
+
+.Notification.error .Notification-info {
+    background-color: #E0003A;
+    color: #fff;
+}
+
+.Notification.has-infoExpanded .Notification-info {
+    display: block;
+}
+
+/* Toggle Button */
+
+.Notification-infoToggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: .5em;
+    outline: none;
+    cursor: pointer;
+    transition: color .25s ease-in-out;
+}
+
+.Notification.error .Notification-infoToggle {
+    display: flex;
+}
+
+.Notification-infoToggle:hover {
+    color: #fff;
+}
+
+.Notification-infoToggle svg {
+    display: inline-block;
+    height: 1.4em;
+    width:  1.4em;
+    transform: rotate(90deg);
+}
+
+.Notification.has-infoExpanded .Notification-infoToggle svg {
+    transform: rotate(-90deg);
+}

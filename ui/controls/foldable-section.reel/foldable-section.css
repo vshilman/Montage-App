@@ -1,0 +1,80 @@
+.FoldableSection {
+    position: relative;
+    margin: 1em -1em;
+    padding: 0 1em;
+    background: rgba(0,0,0,.1);
+}
+
+/*.FoldableSection:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.1);
+}*/
+
+/*.FoldableSection:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1em;
+    right: 1em;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}*/
+
+/* title */
+
+.FoldableSection .InspectorSectionTitle {
+    margin-top:     0;
+    margin-bottom:  0;
+    transition: background-color .25s, color .25s;
+}
+
+/* content */
+
+.FoldableSection-content {
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+}
+
+.FoldableSection-contentContainer { padding: 1em 0; }
+.FoldableSection-contentContainer > *:last-child,
+.FoldableSection-contentContainer > *:last-child .Field {
+    margin-bottom: 0;
+}
+
+/* Title / Icon button container */
+
+.FoldableSection-expand {
+    position: relative;
+    cursor: pointer;
+    outline: none;
+}
+
+.FoldableSection-expand .InspectorSectionTitle-text:after {
+    transition: border-color .25s ease-in-out;
+}
+
+.FoldableSection-expand:hover .InspectorSectionTitle-text:after { border-color: #fff; }
+
+/* Icon */
+
+.FoldableSection-expand svg {
+    position: absolute;
+    top: 50%;
+    margin-top: -.7em;
+    right: 0;
+    width:  1.4em;
+    height: 1.4em;
+    transform: rotate(90deg);
+    color: #6D6D6D;
+}
+
+.FoldableSection-expand:hover svg { color: currentColor; }
+
+.FoldableSection.is-expanded .FoldableSection-expand svg {
+    transform: rotate(-90deg) rotateX(-180deg);
+}
+

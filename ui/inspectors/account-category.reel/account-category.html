@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="account-category.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+
+        "scrollView": {
+            "prototype": "blue-shark/ui/scrollview.reel",
+            "properties": {
+                "element": {"#": "scrollView"},
+                "overflow": "scrollY"
+            }
+        },
+
+        "user": {
+            "prototype": "ui/controls/inspector-option.reel",
+            "properties": {
+                "element": {"#": "user"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object.user"}
+            }
+        },
+
+        "group": {
+            "prototype": "ui/controls/inspector-option.reel",
+            "properties": {
+                "element": {"#": "group"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object.group"}
+            }
+        },
+
+        "system": {
+            "prototype": "ui/controls/inspector-option.reel",
+            "properties": {
+                "element": {"#": "system"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object.system"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="AccountCategory">
+        <div data-montage-id="scrollView">
+            <div data-montage-id="user"></div>
+            <div data-montage-id="group"></div>
+            <div data-montage-id="system"></div>
+        </div>
+    </div>
+</body>
+</html>

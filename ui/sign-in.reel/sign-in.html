@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="sign-in.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "userNameTextField": {"@": "userName"},
+                "passwordTextField": {"@": "password"},
+                "submitButton": {"@": "submit"}
+            },
+            "bindings": {
+                "classList.has('hasError')": {"<-": "@owner.hasError"},
+                "classList.has('isAuthenticating')": {"<-": "@owner.isAuthenticating"}
+            }
+        },
+
+        "trimConverter": {
+            "prototype": "montage/core/converter/trim-converter"
+        },
+
+        "infoText": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "infoText"}
+            },
+            "bindings": {
+                "value": {"<-": "'Enter your username and password.'"}
+            }
+        },
+
+        "userName": {
+            "prototype": "blue-shark/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "userName"},
+                "converter": {"@": "trimConverter"},
+                "placeholderValue": "username"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.userName"}
+            }
+        },
+
+        "password": {
+            "prototype": "blue-shark/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "password"},
+                "converter": {"@": "trimConverter"},
+                "placeholderValue": "password"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.password"}
+            }
+        },
+
+        "errorMessage": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "errorMessage"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.errorMessage"}
+            }
+        },
+
+        "submit": {
+            "prototype": "blue-shark/ui/button.reel",
+            "properties": {
+                "element": {"#": "submit"},
+                "value": "Sign In"
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="SignIn">
+        <div class="SignIn-content">
+            <img src="../../assets/images/logo.png" class="SignIn-logo" alt="FreeNas Logo">
+            <div data-montage-id="infoText" class="SignIn-infoText"></div>
+            <div data-montage-id="errorMessage" class="error-message"></div>
+            <div class="field">
+                <input type="text" data-montage-id="userName" class="SignIn-userName" autofocus></input>
+            </div>
+            <div class="field">
+                <input type="password" data-montage-id="password" class="SignIn-userName"></input>
+            </div>
+            <button data-montage-id="submit" class="SignIn-submit  Button--primary Button--block"></button>
+        </div>
+    </div>
+</body>
+</html>

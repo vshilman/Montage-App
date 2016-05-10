@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="afp-service.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "positiveIntegerValidator": {
+            "prototype": "core/converter/validator/integer-floor-validator",
+            "properties": {
+                "floor": 1,
+                "errorMessage": "Value must be a positive integer."
+            }
+        },
+        "connectionsLimitConverter": {
+            "prototype": "core/converter/string-to-integer-or-null-converter",
+            "properties": {
+                "validator": {"@": "positiveIntegerValidator"}
+            }
+        },
+        "bind_addresses": {
+            "prototype": "blue-shark/ui/multiple-select.reel",
+            "properties": {
+                "element": {"#": "bind_addresses"},
+                "label": "Bind IP Addresses",
+                "placeholderValue": "eg. 1.2.3.4"
+            },
+            "bindings": {
+                "values": {"<->": "@owner.object.bind_addresses"}
+            }
+        },
+        "connections_limit": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "connections_limit"},
+                "label": "Maximum Connections",
+                "converter": {"@": "connectionsLimitConverter"}
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.connections_limit"}
+            }
+        },
+        "guest_enable": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "guest_enable"},
+                "label": "Enable Guest Access"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.guest_enable"}
+            }
+        },
+        "homedir_enable": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "homedir_enable"},
+                "label": "Enable Home Directories"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.homedir_enable"}
+            }
+        },
+        "usersToOptionsConverter": {
+            "prototype": "core/converter/select-option-converter",
+            "properties": {
+                "labelPropertyName": "username",
+                "valuePropertyName": "username"
+            }
+        },
+
+        "guest_user": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "guest_user"},
+                "converter": {"@": "usersToOptionsConverter"},
+                "label": "Guest User"
+            },
+            "bindings": {
+                "options": {"<-": "@owner.users"},
+                "selectedValue": {"<->": "@owner.object.guest_user"}
+            }
+        },
+        "homedir_path": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "homedir_path"},
+                "label": "Home Directories Root Path"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.homedir_path"}
+            }
+        },
+        "homedir_name": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "homedir_name"},
+                "label": "Home Directory Share Name"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.homedir_name"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="AfpService">
+        <div data-montage-id="guest_enable"></div>
+        <div data-montage-id="guest_user"></div>
+        <div data-montage-id="homedir_enable"></div>
+        <div data-montage-id="homedir_path"></div>
+        <div data-montage-id="homedir_name"></div>
+        <div data-montage-id="connections_limit"></div>
+        <div data-montage-id="bind_addresses"></div>
+    </div>
+</body>
+</html>

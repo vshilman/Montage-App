@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="notifications.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "title": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "title"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.title"}
+            }
+        },
+        "items": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "items"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.notificationCenter.notifications.filter{type == @owner.type}"}
+            }
+        },
+        "item": {
+            "prototype": "./notification.reel",
+            "properties": {
+                "element": {"#": "item"}
+            },
+            "bindings": {
+                "object": {"<-": "@items:iteration.object"}
+            }
+        },
+        "itemsScrollview": {
+            "prototype": "blue-shark/ui/scrollview.reel",
+            "properties": {
+                "element": {"#": "itemsScrollview"},
+                "overflow": "scrollY"
+            }
+        },
+        "emptyState": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "emptyState"}
+            },
+            "bindings": {
+                "classList.has('is-hidden')": {"<-": "@items.content.length > 0"},
+                "value": {"<-": "@owner.emptyText"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Notifications">
+        <div class="Notifications-header">
+            <div data-montage-id="title" class="Notifications-title"></div>
+        </div>
+        <div class="Notifications-body">
+            <div data-montage-id="itemsScrollview">
+                <div data-montage-id="items" class="Notifications-items">
+                    <div data-montage-id="item"></div>
+                </div>
+                <div data-montage-id="emptyState" class="Notifications-emptyState"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+{
+  "blueprint_shareiscsi_available_space_threshold": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "available_space_threshold",
+      "blueprint": {"@": "root"},
+      "valueType": "number"
+    }
+  },
+  "blueprint_shareiscsi_block_size": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "block_size",
+      "blueprint": {"@": "root"},
+      "valueType": "number",
+      "enumValues": [
+        512,
+        1024,
+        2048,
+        4096
+      ]
+    }
+  },
+  "blueprint_shareiscsi_ctl_lun": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "ctl_lun",
+      "blueprint": {"@": "root"},
+      "valueType": "number"
+    }
+  },
+  "blueprint_shareiscsi_device_id": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "device_id",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "blueprint_shareiscsi_naa": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "naa",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "blueprint_shareiscsi_physical_block_size": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "physical_block_size",
+      "blueprint": {"@": "root"},
+      "valueType": "boolean"
+    }
+  },
+  "blueprint_shareiscsi_rpm": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "rpm",
+      "blueprint": {"@": "root"},
+      "valueType": "String",
+      "enumValues": [
+        "UNKNOWN",
+        "SSD",
+        "5400",
+        "7200",
+        "10000",
+        "15000"
+      ]
+    }
+  },
+  "blueprint_shareiscsi_serial": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "serial",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "blueprint_shareiscsi_size": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "size",
+      "blueprint": {"@": "root"},
+      "valueType": "number"
+    }
+  },
+  "blueprint_shareiscsi_tpc": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "tpc",
+      "blueprint": {"@": "root"},
+      "valueType": "boolean"
+    }
+  },
+  "blueprint_shareiscsi_type": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "type",
+      "blueprint": {"@": "root"},
+      "enumValues": [
+        "share-iscsi"
+      ]
+    }
+  },
+  "blueprint_shareiscsi_vendor_id": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "vendor_id",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "root": {
+    "prototype": "core/model/model-descriptor",
+    "properties": {
+      "name": "ShareIscsi",
+      "propertyBlueprints": [
+        {"@": "blueprint_shareiscsi_available_space_threshold"},
+        {"@": "blueprint_shareiscsi_block_size"},
+        {"@": "blueprint_shareiscsi_ctl_lun"},
+        {"@": "blueprint_shareiscsi_device_id"},
+        {"@": "blueprint_shareiscsi_naa"},
+        {"@": "blueprint_shareiscsi_physical_block_size"},
+        {"@": "blueprint_shareiscsi_rpm"},
+        {"@": "blueprint_shareiscsi_serial"},
+        {"@": "blueprint_shareiscsi_size"},
+        {"@": "blueprint_shareiscsi_tpc"},
+        {"@": "blueprint_shareiscsi_type"},
+        {"@": "blueprint_shareiscsi_vendor_id"}
+      ]
+    }
+  }
+}

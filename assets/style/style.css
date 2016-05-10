@@ -1,16 +1,247 @@
+/********************
 
-/* 
- * This file is reserved for your global style rules. 
- */
+Colors
 
+********************/
+
+/*
+
+primary:    #2B9CD8
+            rgb(43, 156, 216)
+
+*/
+
+/********************
+
+$Base Styles
+
+********************/
+
+* {
+    box-sizing: border-box;
+}
+
+body,
 html {
-    font-family: sans-serif;
-    color: #333;
-    
-    /* Prevent iOS text size adjust after orientation change, without disabling user zoom. */
-    -webkit-text-size-adjust: 100%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 body {
-    margin: 0; /* Remove default margin */
+    margin: 0;
+    font-family: 'Lato', 'helvetica neue', 'helvetica', 'sans-serif';
+    font-weight: 300;
+    background: #333;
+    color: #929E9F;
+    display: flex;
+    flex-direction: column;
 }
+
+p {
+    margin-top: 0;
+}
+
+dl {
+    margin: 0;
+    margin-bottom: -.5em
+}
+
+dt {
+    color: #939E9F;
+}
+
+dd {
+    color: #E0E5E5;
+    margin-left: 0;
+    margin-bottom: .5em;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+
+/********************
+
+$Fonts
+
+********************/
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/lato/Lato-Light-7244318390cc4d36aac4a613ff42d308.woff2') format('woff2'), url(../fonts/lato/Lato-Light-90301aa07d780a09812229d6375c3b28.woff) format('woff');
+    font-style: normal;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/lato/Lato-Regular-bd03a2cc277bbbc338d464e679fe9942.woff2') format('woff2'), url(../fonts/lato/Lato-Regular-27bd77b9162d388cb8d4c4217c7c5e2a.woff) format('woff');
+    font-style: normal;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
+
+
+/********************
+
+$Icons
+
+********************/
+
+@font-face {
+    font-family: 'freenas';
+    src:
+        url('../fonts/icons/freenas.ttf?df1sb9') format('truetype'),
+        url('../fonts/icons/freenas.woff?df1sb9') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="sharedIcon"], [class*=" sharedIcon"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'freenas' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.sharedIcon-arrow:before {
+    content: "\e900";
+}
+.sharedIcon-gridview:before {
+    content: "\e901";
+}
+.sharedIcon-list-view:before {
+    content: "\e902";
+}
+.sharedIcon-magnifyingGlass:before {
+    content: "\e903";
+}
+.sharedIcon-plus:before {
+    content: "\e904";
+}
+.sharedIcon-table-view:before {
+    content: "\e905";
+}
+.sharedIcon-info:before {
+    content: "\69";
+}
+.sharedIcon-checkmark:before {
+    content: "\63";
+}
+.sharedIcon-triangle-down:before {
+    content: "\76";
+}
+.sharedIcon-preferences:before {
+    content: "\67";
+}
+
+[class*='btn'].montage--disabled {
+    background: #666;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+/*input { height: 2em; }*/
+
+.ApplicationModal {
+    top:    0;
+    left:   0;
+    right:  0;
+    bottom: 0;
+}
+
+/*$fix - hiding modalMask which will be removed entirely */
+
+.montage-ModalOverlay-modalMask {
+    display: none !important;
+}
+
+/* $sample - styles only used on .info samples */
+
+.inspector {
+    max-width: 25em;
+    padding: 0 1em;
+    outline: 1px solid grey;
+}
+
+/* Type */
+
+.h1 { font-size: 3em; }
+.h2 { font-size: 2em; }
+.h3 { font-size: 1.5em; }
+.h4 { font-size: 1.25em; }
+.h5 { font-size: 1em; }
+
+/* Color */
+
+.c-grey-2 { color: #B1BCBE; }
+.c-grey-3 { color: #939E9F; }
+
+.g-padding {
+    padding: 1em;
+}
+
+.g-padding-vertical {
+    padding-top:    1em;
+    padding-bottom: 1em;
+}
+
+.g-padding-top {
+    padding-top: 1em;
+}
+
+.g-margin-sides {
+    margin-left:  1em;
+    margin-right: 1em;
+}
+
+.g-margin-bottom {
+    margin-bottom: 1em;
+}
+
+.flush-bottom {
+    margin-bottom: 0;
+}
+
+/* typography  helpers */
+
+.bold {
+    font-weight: 400;
+}
+
+.hide {
+    display: none;
+}
+
+/* Table Styles */
+
+table {
+    margin: 0;
+    margin-bottom: 1em;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead {
+    font-weight: 400;
+    background: rgba(0,0,0,.2);
+    color: #fff;
+}
+
+thead td { padding: .5em 1em; }
+
+tr { height: 2em; }
+td { padding: 0 1em; }

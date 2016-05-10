@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="share-overview.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "iconSubstitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "iconSubstitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@owner.targetType"}
+            }
+        },
+        "datasetIcon": {
+            "prototype": "ui/icons/dataset.reel",
+            "properties": {
+                "element": {"#": "datasetIcon"},
+                "component.object": {"<-": "@owner.object"},
+                "component.size": {"<-": "size"}
+            }
+        },
+        "directoryIcon": {
+            "prototype": "ui/icons/directory.reel",
+            "properties": {
+                "element": {"#": "directoryIcon"},
+                "component.object": {"<-": "@owner.object"},
+                "component.size": {"<-": "size"}
+            }
+        },
+        "shareType": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "shareType"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.object.type.toUpperCase()"}
+            }
+        },
+        "targetType": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "targetType"}
+            },
+            "bindings": {
+                "value": {"<->": "@owner.targetType"},
+                "classList.has('has-options')": {"<-": "@owner.object._isNewObject"}
+            }
+        },
+        "displayPossibleTargetTypes": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "displayPossibleTargetTypes"}
+            }
+        },
+        "possibleTargetTypes": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "possibleTargetTypes"},
+                "content": [
+                    "DATASET",
+                    "DIRECTORY"
+                ]
+            },
+            "bindings": {
+                "classList.has('is-shown')": {"<-": "@owner.object._isNewObject && @owner.showTargetTypes"}
+            }
+        },
+        "possibleTargetTypeButton": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "possibleTargetTypeButton"}
+            },
+            "bindings": {
+                "value": {"<-": "@possibleTargetTypes:iteration.object"}
+            }
+        },
+        "possibleTargetType": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "possibleTargetType"}
+            },
+            "bindings": {
+                "value": {"<-": "@possibleTargetTypes:iteration.object"}
+            }
+        },
+        "enabled": {
+            "prototype": "blue-shark/ui/toggle-switch.reel",
+            "properties": {
+                "element": {"#": "enabled"}
+            },
+            "bindings": {
+                "checked": {"<->": "!!@owner.object.enabled"}
+            }
+        }
+    }
+    </script>
+<!--
+-->
+</head>
+<body>
+    <div data-montage-id="owner" class="ShareOverview">
+        <div class="ShareOverview-iconContainer">
+            <div data-montage-id="iconSubstitution">
+                <div data-montage-id="datasetIcon" data-arg="DATASET" class="ShareOverview-icon"></div>
+                <div data-montage-id="directoryIcon" data-arg="DIRECTORY" class="ShareOverview-icon"></div>
+            </div>
+            <div data-montage-id="displayPossibleTargetTypes" class="Target-title">
+                <div class="TargetTitle-type">
+                    <span data-montage-id="targetType"></span>
+                    <div class="TargetTitle-arrow"></div>
+                </div>
+                <div data-montage-id="possibleTargetTypes" class="Target-types">
+                    <a data-montage-id="possibleTargetTypeButton">
+                        <div data-montage-id="possibleTargetType" class="TargetTypes-type"></div>
+                    </a>
+                </div>
+
+            </div>
+<!--
+            <div data-montage-id="targetType"></div>
+-->
+        </div>
+        <div class="ShareOverview-info">
+            <p data-montage-id="shareType" class="ShareOverview-title"></p>
+            <div data-montage-id="enabled"></div>
+        </div>
+    </div>
+</body>
+</html>

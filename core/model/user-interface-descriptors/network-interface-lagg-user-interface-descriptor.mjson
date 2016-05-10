@@ -1,0 +1,10 @@
+{
+    "root": {
+        "prototype": "montage/core/meta/user-interface-descriptor",
+        "properties": {
+            "inspectorComponentModule": {"%": "ui/inspectors/lagg.reel"},
+            "iconComponentModule":  {"%": "ui/icons/lagg.reel"},
+            "nameExpression": "!!id ? status.name : 'New ' + type"
+        }
+    }
+}

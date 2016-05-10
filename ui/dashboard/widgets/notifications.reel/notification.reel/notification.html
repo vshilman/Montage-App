@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="notification.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ],
+            "bindings": {
+                "classList.has('has-infoExpanded')": {"<-": "@owner.infoExpanded"},
+                "classList.has('error')": {"<-": "@owner.object.state == 'FAILED'"},
+                "classList.has('success')": {"<-": "@owner.object.state == 'FINISHED'"}
+            }
+        },
+        "taskSummary": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "taskSummary"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.summary"},
+                "classList.has('hide')": {"<-": "!@owner.summary"}
+            }
+        },
+        "converter": {
+            "prototype": "montage/core/converter/date-converter",
+            "properties": {
+                "pattern": "HH:mm:ss"
+            }
+        },
+        "timestamp": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "timestamp"}
+            },
+            "bindings": {
+                "value": {
+                    "<-": "@owner.object.startedTime",
+                    "converter": {"@": "converter"}
+                }
+            }
+        },
+        "progress": {
+            "prototype": "blue-shark/ui/progress.reel",
+            "properties": {
+                "element": {"#": "progress"}
+            },
+            "bindings": {
+                "percentageComplete": {"<-": "@owner.object.progress"},
+                "classList.has('hide')": {"<-": "@owner.object.type != 'TASK'"}
+            }
+        },
+        "notificationMessage": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "notificationMessage"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.object.errorMessage"}
+            }
+        },
+        "infoToggle": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "infoToggle"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Notification">
+        <div class="Notification-body">
+            <div class="Notification-overview">
+                <div>
+                    <div data-montage-id="taskSummary"></div>
+                </div>
+                <div>
+                    <div data-montage-id="timestamp" class="Notification-time"></div>
+                    <div data-montage-id="progress" class="Notification-progress"></div>
+                </div>
+            </div>
+            <div data-montage-id="infoToggle" class="Notification-infoToggle">
+                <svg><use xlink:href="#i-arrow"/></svg>
+            </div>
+            <div data-montage-id="notificationMessage" class="Notification-info"></div>
+        </div>
+    </div>
+</body>
+</html>

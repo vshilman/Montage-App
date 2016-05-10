@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="volume.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "allShares": {"<-": "@owner.object.shares"},
+                "shares": {"<-": "@owner.allShares.filter{volume == @owner.object}"},
+                "allSnapshots": {"<-": "@owner.object.snapshots"},
+                "snapshots": {"<-": "@owner.allSnapshots.filter{volume == @owner.object.id}"}
+            }
+        },
+
+        "bytesConverter": {
+            "prototype": "montage/core/converter/bytes-converter"
+        },
+
+        "size": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "size"},
+                "converter": {"@": "bytesConverter"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.object.properties.size.rawvalue"}
+            }
+        },
+        "inspector": {
+            "prototype": "ui/inspectors/inspector.reel",
+            "properties": {
+                "element": {"#": "inspector"},
+                "canDelete": "true"
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object"}
+            }
+        },
+        "shares": {
+            "prototype": "ui/controls/inspector-option.reel",
+            "properties": {
+                "element": {"#": "shares"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.shares"}
+            }
+        },
+        "snapshots": {
+            "prototype": "ui/controls/inspector-option.reel",
+            "properties": {
+                "element": {"#": "snapshots"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.snapshots"}
+            }
+        },
+        "scrub": {
+            "prototype": "ui/controls/inspector-option.reel",
+            "properties": {
+                "element": {"#": "scrub"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object.scrubs"}
+            }
+        },
+        "topology": {
+            "prototype": "ui/controls/inspector-option.reel",
+            "properties": {
+                "element": {"#": "topology"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object.topology"}
+            }
+        },
+        "volumeIcon": {
+            "prototype": "ui/icons/volume.reel",
+            "properties": {
+                "element": {"#": "volumeIcon"}
+            }
+        },
+        "allocationBar": {
+            "prototype": "ui/controls/allocation-bar.reel",
+            "properties": {
+                "element": {"#": "allocationBar"}
+            },
+            "bindings": {
+                "totalSize": {"<-": "20"},
+                "usedSize": {"<-": "6"},
+                "paritySize": {"<-": "6"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Volume">
+        <div class="Volume-header">
+            <div data-montage-id="volumeIcon" class="Volume-header-icon"></div>
+            <div class="Volume-header-info">
+                <div data-montage-id="size" class="Volume-header-diskSize"></div>
+                <small class="flush-bottom">Size</small>
+            </div>
+        </div>
+        <div data-montage-id="allocationBar" class="Volume-allocationBar"></div>
+        <div data-montage-id="inspector">
+            <div data-montage-id="shares"></div>
+            <div data-montage-id="snapshots"></div>
+            <div data-montage-id="scrub"></div>
+            <div data-montage-id="topology"></div>
+        </div>
+    </div>
+</body>
+</html>

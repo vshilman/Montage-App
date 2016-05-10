@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="topology.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "dataTopologyItemComponent": {"@": "data"},
+                "cacheTopologyItemComponent": {"@": "cache"},
+                "logTopologyItemComponent": {"@": "log"},
+                "spareTopologyItemComponent": {"@": "spare"}
+            },
+            "bindings": {
+                "editable": {"<-": "@owner.mode != @owner.constructor.MODES.READ"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+
+        "data": {
+            "prototype": "./topology-item.reel",
+            "properties": {
+                "element": {"#": "data"},
+                "topologyComponent": {"@": "owner"},
+                "name": "Data",
+                "hasAllocationBar": "true"
+            },
+            "bindings": {
+                "vdevs": {"<-": "@owner.object.data"},
+                "editable": {"<-": "@owner.editable"}
+            }
+        },
+        "cache": {
+            "prototype": "./topology-item.reel",
+            "properties": {
+                "element": {"#": "cache"},
+                "topologyComponent": {"@": "owner"},
+                "name": "Cache"
+            },
+            "bindings": {
+                "vdevs": {"<-": "@owner.object.cache"},
+                "editable": {"<-": "@owner.editable"}
+            }
+        },
+        "log": {
+            "prototype": "./topology-item.reel",
+            "properties": {
+                "element": {"#": "log"},
+                "topologyComponent": {"@": "owner"},
+                "name": "Log",
+                "hasAllocationBar": "true"
+            },
+            "bindings": {
+                "vdevs": {"<-": "@owner.object.log"},
+                "editable": {"<-": "@owner.editable"}
+            }
+        },
+        "spare": {
+            "prototype": "./topology-item.reel",
+            "properties": {
+                "element": {"#": "spare"},
+                "topologyComponent": {"@": "owner"},
+                "name": "Spare"
+            },
+            "bindings": {
+                "vdevs": {"<-": "@owner.object.spare"},
+                "editable": {"<-": "@owner.editable"}
+            }
+        }
+
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Topology">
+        <div data-montage-id="data" class="Topology-data"></div>
+        <div data-montage-id="cache"></div>
+        <div data-montage-id="log"></div>
+        <div data-montage-id="spare"></div>
+    </div>
+</body>
+</html>

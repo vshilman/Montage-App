@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="share.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "datasetToPathConverter": {"@": "datasetToPathConverter"}
+            },
+            "bindings": {
+                "targetPath": {"<-": "@owner.targetPathNode ? @owner.targetPathNode.path : ''"},
+                "datasetsPath": {"<-": "@owner.object.volume.datasets.map{mountpoint}"},
+                "datasetChildren": {"<-": "@owner.folders ? @owner.folders.filter{isDataset} : []"},
+                "directoryChildren": {"<-": "@owner.folders ? @owner.folders.filter{!isDataset} : []"},
+                "isPathReadOnly": {"<-": "!@owner.object._isNewObject && @owner.targetType == 'DATASET'"}
+            }
+        },
+        "datasetToPathConverter": {
+            "prototype": "core/converter/dataset-to-path-converter"
+        },
+        "usersOptionsConverter": {
+            "prototype": "core/converter/select-option-converter",
+            "properties": {
+                "labelPropertyName": "username",
+                "valuePropertyName": "username"
+            }
+        },
+        "groupsOptionsConverter": {
+            "prototype": "core/converter/select-option-converter",
+            "properties": {
+                "labelPropertyName": "name",
+                "valuePropertyName": "name"
+            }
+        },
+        "inspector": {
+            "prototype": "ui/inspectors/inspector.reel",
+            "properties": {
+                "element": {"#": "inspector"},
+                "canDelete": "true",
+                "canRevert": "true",
+                "canSave": "true"
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object"}
+            }
+        },
+        "overview": {
+            "prototype": "./share-overview.reel",
+            "properties": {
+                "element": {"#": "overview"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object"},
+                "targetType": {"<->": "@owner.targetType"}
+            }
+        },
+        "name": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "name"},
+                "label": "Name"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.name"}
+            }
+        },
+        "description": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "description"},
+                "label": "Description"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.description"}
+            }
+        },
+        "target": {
+            "prototype": "ui/controls/field-treeview.reel",
+            "properties": {
+                "element": {"#": "target"}
+            },
+            "bindings": {
+                "root": {"<-": "'/mnt/' + @owner.object.volume.id"},
+                "parent": {"<-": "@owner.targetPathNode"},
+                "parentPath": {"<->": "@owner.targetPath"},
+                "children": {"<-": "@owner.targetType == 'DATASET' ? @owner.datasetChildren : @owner.folders"},
+                "label": {"<-": "@owner.targetType != 'DATASET' ? 'Target' : 'Create target'"},
+                "readOnly": {"<-": "@owner.isPathReadOnly"},
+                "suffix": {"<-": "@owner.targetType == 'DATASET' && !@owner.isPathReadOnly ? @name.value || '' : ''"}
+            }
+        },
+        "substitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "substitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@owner.object.type"}
+            }
+        },
+        "smb": {
+            "prototype": "ui/inspectors/smb-share.reel",
+            "properties": {
+                "element": {"#": "smb"}
+            },
+            "bindings": {
+                "properties": {"<-": "@owner.object.properties"}
+            }
+        },
+        "afp": {
+            "prototype": "ui/inspectors/afp-share.reel",
+            "properties": {
+                "element": {"#": "afp"}
+            },
+            "bindings": {
+                "properties": {"<-": "@owner.object.properties"}
+            }
+        },
+        "nfs": {
+            "prototype": "ui/inspectors/nfs-share.reel",
+            "properties": {
+                "element": {"#": "nfs"}
+            },
+            "bindings": {
+                "properties": {"<-": "@owner.object.properties"}
+            }
+        },
+        "ownerUser": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "ownerUser"},
+                "label": "Owner user",
+                "converter": {"@": "usersOptionsConverter"}
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.object.permissions.user"},
+                "options": {"<-": "@owner.users.sorted{builtin + username}"}
+            }
+        },
+        "ownerGroup": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "ownerGroup"},
+                "label": "Owner group",
+                "converter": {"@": "groupsOptionsConverter"}
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.object.permissions.group"},
+                "options": {"<-": "@owner.groups.sorted{builtin + name}"}
+            }
+        },
+        "globalServiceToggle": {
+            "prototype": "blue-shark/ui/toggle-switch.reel",
+            "properties": {
+                "element": {"#": "globalServiceToggle"}
+            },
+            "bindings": {
+                "label": {"<-": "'Global ' + @owner.object.type.toUpperCase() + ' Service'"},
+                "checked": {"<->": "@owner.isServiceStarted"}
+            }
+        },
+        "globalServiceLabel": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "globalServiceLabel"}
+            },
+            "bindings": {
+                "value": {"<-": "'Global ' + @owner.object.type.toUpperCase() + ' Service'"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Share">
+        <div data-montage-id="inspector">
+            <div class="Share-globalToggle">
+                <div data-montage-id="globalServiceLabel" class="Share-globalToggle-label"></div>
+                <div data-montage-id="globalServiceToggle"></div>
+            </div>
+            <div data-montage-id="overview"></div>
+            <div data-montage-id="name"></div>
+            <div data-montage-id="target"></div>
+            <div data-montage-id="description"></div>
+            <div data-montage-id="substitution">
+                <div data-arg="smb" data-montage-id="smb"></div>
+                <div data-arg="afp" data-montage-id="afp"></div>
+                <div data-arg="nfs" data-montage-id="nfs"></div>
+            </div>
+            <div data-montage-id="ownerUser"></div>
+            <div data-montage-id="ownerGroup"></div>
+        </div>
+    </div>
+</body>
+</html>

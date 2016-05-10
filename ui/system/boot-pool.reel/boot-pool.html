@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="boot-pool.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "bootVolumeSize": {
+            "prototype": "blue-shark/ui/field-text.reel",
+            "properties": {
+                "element": {"#": "bootVolumeSize"},
+                "label": "Capacity"
+            },
+            "bindings": {
+                "value": {"<-": "@owner.bootVolume.properties.size.rawvalue"}
+            }
+        },
+        "bootVolumeUsed": {
+            "prototype": "blue-shark/ui/field-text.reel",
+            "properties": {
+                "element": {"#": "bootVolumeUsed"},
+                "label": "Space Used"
+            },
+            "bindings": {
+                "value": {"<-": "@owner.bootVolume.properties.allocated.rawvalue + ' (' + @owner.bootVolume.properties.capacity.value + ')'"}
+            }
+        },
+        "bootVolumeCondition": {
+            "prototype": "blue-shark/ui/field-text.reel",
+            "properties": {
+                "element": {"#": "bootVolumeCondition"},
+                "label": "Condition"
+            },
+            "bindings": {
+                "value": {"<-": "@owner.bootVolume.status"}
+            }
+        },
+        "bootVolumeScrub": {
+            "prototype": "blue-shark/ui/button.reel",
+            "properties": {
+                "element": {"#": "bootVolumeScrub"},
+                "value": "Scrub Now"
+            }
+        },
+        "createBootEnvironment": {
+            "prototype": "blue-shark/ui/button.reel",
+            "properties": {
+                "element": {"#": "createBootEnvironment"},
+                "value": "Create Boot Environment"
+            }
+        },
+        "controller": {
+            "prototype": "montage/core/range-controller",
+            "bindings": {
+                "content": {"<-": "@owner.bootEnvironments"}
+            }
+        },
+        "bootEnvironmentTable": {
+            "prototype": "ui/controls/table.reel",
+            "properties": {
+                "element": {"#": "bootEnvironmentTable"},
+                "dataController": {"@": "controller"},
+                "columns": [
+                    {
+                        "label": "Name",
+                        "expression": "realname"
+                    },
+                    {
+                        "label": "Active",
+                        "expression": "(active ? 'Current' : 'Inactive') + (on_reboot ? ', Next Reboot' : '')"
+                    },
+                    {
+                        "label": "Space Used",
+                        "expression": "space"
+                    },
+                    {
+                        "label": "Date Created",
+                        "expression": "created['$date']"
+                    }
+                ]
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="BootPool">
+        <div data-montage-id="bootVolumeSize"></div>
+        <div data-montage-id="bootVolumeUsed"></div>
+        <div data-montage-id="bootVolumeCondition"></div>
+        <div data-montage-id="bootVolumeScrub"></div>
+        <div data-montage-id="bootEnvironmentTable"></div>
+        <div data-montage-id="createBootEnvironment"></div>
+    </div>
+</body>
+</html>

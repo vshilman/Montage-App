@@ -1,0 +1,34 @@
+{
+  "blueprint_accountcategory_user": {
+      "prototype": "montage/core/meta/property-blueprint",
+      "properties": {
+        "name": "user",
+        "blueprint": {"@": "root"}
+      }
+    },
+  "blueprint_accountcategory_group": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "group",
+      "blueprint": {"@": "root"}
+    }
+  },
+  "blueprint_accountcategory_system": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "system",
+      "blueprint": {"@": "root"}
+    }
+  },
+  "root": {
+    "prototype": "core/model/model-descriptor",
+    "properties": {
+      "name": "AccountCategory",
+      "propertyBlueprints": [
+        {"@": "blueprint_accountcategory_user"},
+        {"@": "blueprint_accountcategory_group"},
+        {"@": "blueprint_accountcategory_system"}
+      ]
+    }
+  }
+}

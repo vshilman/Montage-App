@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="main-sidebar.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "navigation": {
+            "prototype": "../main-navigation.reel",
+            "properties": {
+                "element": {"#": "navigation"}
+            }
+        },
+        "userSummary": {
+            "prototype": "../current-user-summary.reel",
+            "properties": {
+                "element": {"#": "userSummary"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="MainSidebar">
+        <div class="MainSidebar-freenasLogo"></div>
+        <div data-montage-id="navigation" class="MainSidebar-navigation"></div>
+        <div data-montage-id="userSummary" class="MainSidebar-userSummary"></div>
+    </div>
+</body>
+</html>

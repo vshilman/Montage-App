@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="inspector-footer.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "classList.has('is-visible')": {"<-": "!@owner.isHidden"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "delete": {
+            "prototype": "blue-shark/ui/button.reel",
+            "properties": {
+                "element": {"#": "delete"},
+                "value": "Delete"
+            },
+            "bindings": {
+                "classList.has('is-visible')": {"<-": "@owner.canDelete"}
+            }
+        },
+        "revert": {
+            "prototype": "blue-shark/ui/button.reel",
+            "properties": {
+                "element": {"#": "revert"},
+                "value": "Revert"
+            },
+            "bindings": {
+                "classList.has('is-visible')": {"<-": "@owner.canRevert"}
+            }
+        },
+        "save": {
+            "prototype": "blue-shark/ui/button.reel",
+            "properties": {
+                "element": {"#": "save"},
+                "value": "Save"
+            },
+            "bindings": {
+                "classList.has('is-visible')": {"<-": "@owner.canSave"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="InspectorFooter">
+        <div class="InspectorFooter-left">
+            <div data-montage-id="delete" class="InspectorFooter-delete blueShark-Button Button--alert Button--small">
+            </div>
+        </div>
+        <div class="InspectorFooter-right">
+            <button data-montage-id="revert" class="InspectorFooter-revert blueShark-Button Button--secondary Button--small"></button>
+            <button data-montage-id="save" class="InspectorFooter-save blueShark-Button Button--primary Button--small"></button>
+        </div>
+    </div>
+</body>
+</html>

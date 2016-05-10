@@ -1,0 +1,23 @@
+.Configuration {
+    min-width: 26em;
+}
+
+.Configuration .ScrollviewContent {
+    width: 100%;
+}
+
+.Configuration table {
+    margin-bottom: 0;
+}
+
+.Configuration th {
+    text-align: left;
+    line-height: 1em;
+    padding: .5em 1em;
+    font-weight: 300;
+    color: #E9FDFF;
+}
+
+.Configuration table tr:nth-child(even) {
+    background-color: rgba(0,0,0,.1);
+}

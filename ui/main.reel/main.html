@@ -1,22 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Main</title>
-
-    <link rel="stylesheet" href="main.css">
-
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="main.css">
     <script type="text/montage-serialization">
-        {
-            "owner": {
-                "properties": {
-                    "element": {"#": "main"}
-                }
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "main"}
+            }
+        },
+        "mainSidebar": {
+            "prototype": "../main-sidebar/main-sidebar.reel",
+            "properties": {
+                "element": {"#": "mainSidebar"}
+            }
+        },
+        "sideboard": {
+            "prototype": "../dashboard/sideboard.reel",
+            "properties": {
+                "element": {"#": "sideboard"}
+            }
+        },
+        "substitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "substitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "application.section"}
+            }
+        },
+        "dashboard": {
+            "prototype": "../dashboard/dashboard.reel",
+            "properties": {
+                "element": {"#": "dashboard"}
+            }
+        },
+        "storage": {
+            "prototype": "../storage/storage.reel",
+            "properties": {
+                "element": {"#": "storage"}
+            }
+        },
+        "accounts": {
+            "prototype": "../accounts/accounts.reel",
+            "properties": {
+                "element": {"#": "accounts"}
+            }
+        },
+        "network": {
+            "prototype": "../network/network.reel",
+            "properties": {
+                "element": {"#": "network"}
+            }
+        },
+        "hardware": {
+            "prototype": "../hardware/hardware.reel",
+            "properties": {
+                "element": {"#": "hardware"}
+            }
+        },
+        "system": {
+            "prototype": "../system/system.reel",
+            "properties": {
+                "element": {"#": "system"}
+            }
+        },
+        "services": {
+            "prototype": "../services/services.reel",
+            "properties": {
+                "element": {"#": "services"}
+            }
+        },
+        "console": {
+            "prototype": "../console.reel",
+            "properties": {
+                "element": {"#": "console"}
+            }
+        },
+        "calendar": {
+            "prototype": "../calendar/calendar.reel",
+            "properties": {
+                "element": {"#": "calendar"}
+            }
+        },
+        "preferences": {
+            "prototype": "../preferences/preferences.reel",
+            "properties": {
+                "element": {"#": "preferences"}
+            }
+        },
+        "modal": {
+            "prototype": "../controls/modal.reel",
+            "properties": {
+                "element": {"#": "modal"}
+            }
+        },
+        "icons": {
+            "prototype": "ui/icons.reel",
+            "properties": {
+                "element": {"#": "icons"}
             }
         }
+    }
     </script>
 </head>
 <body>
-    <div data-montage-id="main" data-montage-skin="light" class="Main"></div>
+    <div data-montage-id="main" class="Main">
+        <div data-montage-id="icons"></div>
+        <div data-montage-id="mainSidebar" class="Main-mainSidebar"></div>
+        <div class="Main-content">
+            <div data-montage-id="substitution" class="Main-substitution">
+                <div data-arg="dashboard" data-montage-id="dashboard"></div>
+                <div data-arg="storage" data-montage-id="storage"></div>
+                <div data-arg="accounts" data-montage-id="accounts"></div>
+                <div data-arg="network" data-montage-id="network"></div>
+                <div data-arg="hardware" data-montage-id="hardware"></div>
+                <div data-arg="system" data-montage-id="system"></div>
+                <div data-arg="services" data-montage-id="services"></div>
+                <div data-arg="console" data-montage-id="console"></div>
+                <div data-arg="calendar" data-montage-id="calendar"></div>
+                <div data-arg="preferences" data-montage-id="preferences"></div>
+            </div>
+        </div>
+        <div data-montage-id="sideboard" class="Main-sideboard"></div>
+        <div data-montage-id="modal" class="Main-modal"></div>
+    </div>
 </body>
 </html>

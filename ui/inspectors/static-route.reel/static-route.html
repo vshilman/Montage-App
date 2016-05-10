@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="static-route.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "inspector": {
+            "prototype": "ui/inspectors/inspector.reel",
+            "properties": {
+                "element": {"#": "inspector"}
+            }
+        },
+        "netmask": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "netmask"},
+                "label": "Netmask"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.netmask"}
+            }
+        },
+        "gateway": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "gateway"},
+                "label": "Gateway"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.gateway"}
+            }
+        },
+        "network": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "network"},
+                "label": "Network"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.network"}
+            }
+        },
+        "protocolTypeConverter": {
+            "prototype": "core/converter/select-option-converter",
+            "properties": {
+                "labelPropertyName": "label",
+                "valuePropertyName": "value"
+            }
+        },
+        "type": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "type"},
+                "converter": {"@": "protocolTypeConverter"},
+                "label": "IP Type"
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.object.type"},
+                "options": {"<-": "@owner.protocolOptions"}
+            }
+        },
+        "id": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties" : {
+                "element": {"#": "id"},
+                "label": "ID"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.id"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="StaticRoute">
+        <div data-montage-id="inspector">
+            <div data-montage-id="netmask"></div>
+            <div data-montage-id="gateway"></div>
+            <div data-montage-id="network"></div>
+            <div data-montage-id="type"></div>
+            <div data-montage-id="id"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "root": {
+        "prototype": "montage/core/meta/user-interface-descriptor",
+        "properties": {
+            "inspectorComponentModule": {"%": "ui/inspectors/network-interface.reel"},
+            "iconComponentModule":  {"%": "ui/icons/network-interface.reel"},
+            "collectionItemComponentModule": {"%": "ui/network/interfaces-list-item.reel"},
+            "collectionInspectorComponentModule": {"%": "ui/controls/viewer.reel"},
+            "creatorComponentModule": {"%": "ui/inspectors/network-interface-creator.reel"},
+            "collectionNameExpression": "'Interfaces'",
+            "nameExpression": "!!id ? !!name ? name : id : !!type ? 'New ' + type : 'Choose an interface type'"
+        }
+    }
+}

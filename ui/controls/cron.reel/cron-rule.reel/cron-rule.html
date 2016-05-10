@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="cron-rule.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "selectedType": {"<-": "@selector.selectedValue"}
+            }
+        },
+
+        "cronLabel": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "cronLabel"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.rule.field.label"}
+            }
+        },
+
+        "selector": {
+            "prototype": "blue-shark/ui/select.reel",
+            "properties": {
+                "element": {"#": "selector"}
+            },
+            "bindings": {
+                "options": {"<-": "@owner.constructor.SELECTOR_OPTIONS"},
+                "selectedValue": {"<-": "@owner.rule.type || @owner.constructor.SELECTOR_TYPES.EVERY"}
+            }
+        },
+
+        "substitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "substitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@selector.selectedValue"}
+            }
+        },
+
+        "frequencyNumber": {
+            "prototype": "blue-shark/ui/number-input.reel",
+            "properties": {
+                "element": {"#": "frequencyNumber"},
+                "min": 0
+            },
+            "bindings": {
+                "value": {"<->": "@owner.value"}
+            }
+        },
+
+        "fieldValues": {
+            "prototype": "blue-shark/ui/multiple-select-grid.reel",
+            "properties": {
+                "element": {"#": "fieldValues"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.constructor.FIELD_VALUES[@owner.rule.field.index]"},
+                "selection": {"<->": "@owner.values"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="CronRule">
+        <div data-montage-id="cronLabel">label</div>
+        <div data-montage-id="selector" class="CronRule-selector"></div>
+        <div data-montage-id="substitution">
+            <div data-arg="EVERY" class="CronRule-controls CronRule-controls--every">
+                <div data-montage-id="frequencyNumber" class="CronRule-control"></div>
+            </div>
+            <div data-arg="ON" class="CronRule-controls CronRule-controls--on">
+                <div data-montage-id="fieldValues" class="CronRule-control"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

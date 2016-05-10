@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="cron-rules.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "rulesTitle": {
+            "prototype": "ui/controls/inspector-section-title.reel",
+            "properties": {
+                "element": {"#": "rulesTitle"},
+                "value": "Rules"
+            }
+        },
+        "rules": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "rules"}
+            },
+            "bindings": {
+                "content": {"<-": "@owner.rules"}
+            }
+        },
+        "rule": {
+            "prototype": "../cron-rule.reel",
+            "properties": {
+                "element": {"#": "rule"},
+                "rulesController": {"@": "owner"}
+            },
+            "bindings": {
+                "rule": {"<-": "@rules:iteration.object"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="CronRules">
+        <div data-montage-id="rulesTitle"></div>
+        <div class="CronRules-rulesContainer">
+            <div data-montage-id="rules" class="CronRules-rules">
+                <div data-montage-id="rule" class="CronRules-rule"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

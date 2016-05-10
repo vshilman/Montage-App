@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="viewer.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "selectedObject": {"<->": "@controller.selection.0"},
+                "classList.has('has-items')": {"<-": "@owner.object.length > 0"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "viewMode": {
+            "prototype": "./view-mode.reel",
+            "properties": {
+                "element": {"#": "viewMode"}
+            }
+        },
+        "substitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "substitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@viewMode.type"}
+            }
+        },
+        "controller": {
+            "prototype": "montage/core/range-controller",
+            "bindings": {
+                "content": {"<-": "@owner.object"},
+                "sortPath": {"<-": "@owner.sortingKey"}
+            }
+        },
+        "list": {
+            "prototype": "ui/controls/list.reel",
+            "properties": {
+                "element": {"#": "list"},
+                "controller": {"@": "controller"}
+            }
+        },
+        "grid": {
+            "prototype": "ui/controls/grid.reel",
+            "properties": {
+                "element": {"#": "grid"},
+                "controller": {"@": "controller"},
+                "labelPath": "id"
+            }
+        },
+        "table": {
+            "prototype": "ui/controls/table.reel",
+            "properties": {
+                "element": {"#": "table"},
+                "controller": {"@": "controller"}
+            }
+        },
+        "createButton": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "createButton"}
+            },
+            "bindings": {
+                "classList.has('hide')": {"<-": "!@owner.hasCreateEditor"}
+            }
+        },
+        "scrollView": {
+            "prototype": "blue-shark/ui/scrollview.reel",
+            "properties": {
+                "element": {"#": "scrollView"},
+                "overflow": "scrollY"
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Viewer">
+        <div class="Viewer-header">
+            <div data-montage-id="viewMode"></div>
+        </div>
+        <div data-montage-id="scrollView">
+            <div class="content">
+                <div data-montage-id="substitution" class="Viewer-content">
+                    <div data-arg="list" data-montage-id="list" class="Viewer-list"></div>
+                    <div data-arg="grid" data-montage-id="grid" class="Viewer-grid"></div>
+                    <div data-arg="table" data-montage-id="table" class="Viewer-table"></div>
+                </div>
+            </div>
+            <div class="Viewer-footer">
+                <div data-montage-id="createButton" class="Viewer-createButton">
+                    <div class="Viewer-createButton-plus">
+                        <svg><use xlink:href="#i-plus"/></svg>
+                    </div>
+                    <span class="Viewer-createButton-label">Create</span>
+                    <div class="Viewer-createButton-arrow">
+                        <svg><use xlink:href="#i-arrow"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

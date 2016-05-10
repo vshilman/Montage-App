@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="tree-view.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "currentNode": {"@": "currentNode"},
+                "nextNode": {"@": "nextNode"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"}
+                }
+            ]
+        },
+        "currentPath": {
+            "prototype": "blue-shark/ui/text-field.reel",
+            "properties": {
+                "element": {"#": "currentPath"},
+                "enabled": false
+            },
+            "bindings": {
+                "value": {"<-": "@owner.parent.path + '/' + @owner.suffix"}
+            }
+        },
+        "currentNode": {
+            "prototype": "./current-node.reel",
+            "properties": {
+                "element": {"#": "currentNode"}
+            },
+            "bindings": {
+                "parent": {"<->": "@owner.parent"},
+                "children": {"<-": "@owner.children"}
+            }
+        },
+        "nextNode": {
+            "prototype": "./current-node.reel",
+            "properties": {
+                "element": {"#": "nextNode"}
+            },
+            "bindings": {
+                "parent": {"<-": "@owner.parent"},
+                "children": {"<-": "@owner.children"}
+            }
+        },
+        "backButton": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "backButton"}
+            }
+        },
+        "cancel": {
+            "prototype": "blue-shark/ui/button.reel",
+            "properties": {
+                "element": {"#": "cancel"},
+                "value": "cancel"
+            }
+        },
+        "select": {
+            "prototype": "blue-shark/ui/button.reel",
+            "properties": {
+                "element": {"#": "select"},
+                "value": "select"
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="TreeView">
+        <div class="TreeView-header">
+            <div data-montage-id="backButton" class="TreeView-backButton">
+                <svg><use xlink:href="#i-arrow"/></svg>
+            </div>
+            <div data-montage-id="currentPath" class="TreeView-currentPath"></div>
+        </div>
+        <div class="TreeView-body">
+            <div data-montage-id="currentNode" class="TreeView-currentNode"></div>
+            <div data-montage-id="nextNode" class="TreeView-currentNode isAfter"></div>
+        </div>
+        <div class="TreeView-footer">
+            <div data-montage-id="cancel" class="Button--small"></div>
+            <div data-montage-id="select" class="Button--primary Button--small"></div>
+        </div>
+    </div>
+</body>
+</html>

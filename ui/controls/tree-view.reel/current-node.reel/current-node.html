@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="current-node.css">
+<!--
+                "classList.has('isBefore')": {"<-": "@childNodes.selection.length > 0"},
+-->
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "selectedChild": {"<-": "@childNodes.selection"}
+            }
+        },
+        "iconSubstitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "iconSubstitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@owner.parent.isDataset"}
+            }
+        },
+        "parentNode": {
+            "prototype": "montage/ui/component",
+            "properties": {
+                "element": {"#": "parentNode"},
+                "hasTemplate": false
+            }
+        },
+        "parentNodeName": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "parentNodeName"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.parent.name"}
+            }
+        },
+        "scrollview": {
+            "prototype": "blue-shark/ui/scrollview.reel",
+            "properties": {
+                "element": {"#": "scrollview"},
+                "overflow": "scrollY"
+            }
+        },
+        "childNodes": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "childNodes"},
+                "isSelectionEnabled": true
+            },
+            "bindings": {
+                "content": {"<-": "@owner.children"}
+            }
+        },
+        "childNode": {
+            "prototype": "../child-node.reel",
+            "properties": {
+                "element": {"#": "childNode"}
+            },
+            "bindings": {
+                "data": {"<-": "@childNodes:iteration.object"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="CurrentNode">
+        <div data-montage-id="parentNode" class="CurrentNode-parentNode">
+            <div data-montage-id="parentNodeIcon" class="CurrentNode-parentNode-icon">
+                <svg data-montage-id="iconSubstitution">
+                    <use xlink:href="#i-dataset" data-arg="true"/>
+                    <use xlink:href="#i-folderOpen" data-arg="false"/>
+                </svg>
+            </div>
+            <div data-montage-id="parentNodeName" class="CurrentNode-parentNode-name"></div>
+        </div>
+        <div class="CurrentNode-scrollview">
+            <div data-montage-id="scrollview">
+                <div data-montage-id="childNodes" class="CurrentNode-childNodes">
+                    <div data-montage-id="childNode" class="CurrentNode-childNode"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

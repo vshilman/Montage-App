@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="child-node.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "iconSubstitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "iconSubstitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@owner.data.isDataset"}
+            }
+        },
+        "name": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "name"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.data.name"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="ChildNode">
+        <div class="ChildNode-typeIcon">
+            <svg data-montage-id="iconSubstitution">
+                <use xlink:href="#i-dataset" data-arg="true"/>
+                <use xlink:href="#i-folder" data-arg="false"/>
+            </svg>
+        </div>
+        <div data-montage-id="name" class="ChildNode-name"></div>
+        <div class="ChildNode-arrow">
+            <svg><use xlink:href="#i-arrow"/></svg>
+        </div>
+    </div>
+</body>
+</html>

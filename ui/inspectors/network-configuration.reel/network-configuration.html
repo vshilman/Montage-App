@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="network-configuration.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "isGatewayDhcpAssigned": {"<->": "@owner.object.dhcp.assign_gateway"}
+            }
+        },
+        "inspector": {
+            "prototype": "ui/inspectors/inspector.reel",
+            "properties": {
+                "element": {"#": "inspector"},
+                "canSave": "true",
+                "canRevert": "true"
+            }
+        },
+        "hostname": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "hostname"},
+                "label": "Hostname"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.general.hostname"}
+            }
+        },
+        "netwait_enabled": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "netwait_enabled"},
+                "label": "Enable Netwait"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.netwait.enabled"}
+            }
+        },
+        "netwait_addresses": {
+            "prototype": "blue-shark/ui/multiple-select.reel",
+            "properties": {
+                "element": {"#": "netwait_addresses"},
+                "label": "Netwait Addresses",
+                "labelPath": "this"
+            },
+            "bindings": {
+                "values": {"<->": "@owner.object.netwait.addresses"},
+                "enabled": {"<-": "@owner.object.netwait.enabled"},
+                "placeholderValue": {"<-": "@owner.object.netwait.enabled ? 'eg. 1.2.3.4' : ''"}
+            }
+        },
+        "netwait_settings": {
+            "prototype": "ui/controls/foldable-section.reel",
+            "properties": {
+                "element": {"#": "netwait_settings"},
+                "title": "Netwait Settings"
+            }
+        },
+        "http_proxy": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "http_proxy"},
+                "label": "HTTP Proxy",
+                "placeholderValue": "eg. http://a.com:1234"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.http_proxy"}
+            }
+        },
+        "dhcp_settings": {
+            "prototype": "ui/controls/foldable-section.reel",
+            "properties": {
+                "element": {"#": "dhcp_settings"},
+                "title": "DHCP Settings",
+                "isExpanded": "true"
+            }
+        },
+        "dhcp_assign_gateway": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "dhcp_assign_gateway"},
+                "label": "Assign Gateway"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.dhcp.assign_gateway"}
+            }
+        },
+        "dhcp_assign_dns": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "dhcp_assign_dns"},
+                "label": "Assign DNS"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.dhcp.assign_dns"}
+            }
+        },
+        "dhcpGatewaySubstitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "dhcpGatewaySubstitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@owner.isGatewayDhcpAssigned ? 'dhcp' : 'static'"}
+            }
+        },
+        "gatewaySettings": {
+            "prototype": "ui/controls/foldable-section.reel",
+            "properties": {
+                "element": {"#": "gatewaySettings"},
+                "title": "Gateway Settings",
+                "isExpanded": "true"
+            }
+        },
+        "gatewayIpv4": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "gatewayIpv4"},
+                "label": "IPv4"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.gateway.ipv4"},
+                "placeholderValue": {"<-": "'eg. 1.2.3.4/16'"}
+            }
+        },
+        "gatewayIpv6": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "gatewayIpv6"},
+                "label": "IPv6"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.gateway.ipv6"},
+                "placeholderValue": {"<-": "'eg. ::ffff:102:304'"}
+            }
+        },
+        "dhcpGatewaySettings": {
+            "prototype": "ui/controls/foldable-section.reel",
+            "properties": {
+                "element": {"#": "dhcpGatewaySettings"},
+                "title": "Gateway Settings",
+                "isExpanded": "true"
+            }
+        },
+        "dhcpGatewayIpv4": {
+            "prototype": "blue-shark/ui/field-text.reel",
+            "properties": {
+                "element": {"#": "dhcpGatewayIpv4"},
+                "label": "IPv4"
+            },
+            "bindings": {
+                "value": {"<-": "@owner.object.status.gateway.ipv4"}
+            }
+        },
+        "dhcpGatewayIpv6": {
+            "prototype": "blue-shark/ui/field-text.reel",
+            "properties": {
+                "element": {"#": "dhcpGatewayIpv6"},
+                "label": "IPv6"
+            },
+            "bindings": {
+                "value": {"<-": "@owner.object.status.gateway.ipv6"}
+            }
+        },
+        "dns_settings": {
+            "prototype": "ui/controls/foldable-section.reel",
+            "properties": {
+                "element": {"#": "dns_settings"},
+                "title": "DNS Settings"
+            }
+        },
+        "dns_search": {
+            "prototype": "blue-shark/ui/multiple-select.reel",
+            "properties": {
+                "element": {"#": "dns_search"},
+                "label": "Search Addresses",
+                "labelPath": "this",
+                "draggable": "true"
+            },
+            "bindings": {
+                "values": {"<->": "@owner.object.dns.search"},
+                "enabled": {"<-": "!@owner.object.dhcp.assign_dns"},
+                "placeholderValue": {"<-": "!@owner.object.dhcp.assign_dns ? 'eg. example.com' : ''"}
+            }
+        },
+        "dns_addresses": {
+            "prototype": "blue-shark/ui/multiple-select.reel",
+            "properties": {
+                "element": {"#": "dns_addresses"},
+                "label": "IP Addresses",
+                "labelPath": "this"
+            },
+            "bindings": {
+                "values": {"<->": "@owner.object.dns.addresses"},
+                "enabled": {"<-": "!@owner.object.dhcp.assign_dns"},
+                "placeholderValue": {"<-": "!@owner.object.dhcp.assign_dns ? 'eg. 1.2.3.4' : ''"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="NetworkConfiguration">
+        <div data-montage-id="inspector">
+            <div data-montage-id="hostname"></div>
+            <div data-montage-id="dhcp_settings">
+                <div data-montage-id="dhcp_assign_gateway"></div>
+                <div data-montage-id="dhcp_assign_dns"></div>
+            </div>
+            <div data-montage-id="dhcpGatewaySubstitution">
+                <div data-montage-id="gatewaySettings" data-arg="static">
+                    <div data-montage-id="gatewayIpv4"></div>
+                    <div data-montage-id="gatewayIpv6"></div>
+                </div>
+                <div data-montage-id="dhcpGatewaySettings" data-arg="dhcp">
+                    <div data-montage-id="dhcpGatewayIpv4"></div>
+                    <div data-montage-id="dhcpGatewayIpv6"></div>
+                </div>
+            </div>
+            <div data-montage-id="http_proxy"></div>
+            <div data-montage-id="dns_settings">
+                <div data-montage-id="dns_search"></div>
+                <div data-montage-id="dns_addresses"></div>
+            </div>
+            <div data-montage-id="netwait_settings">
+                <div data-montage-id="netwait_enabled"></div>
+                <div data-montage-id="netwait_addresses"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

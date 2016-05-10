@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="topology.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "availableDisks": {"<-": "@availableDisks.availableDisks"},
+                "classList.has('has-availableDisks')": {"<-": "@availableDisks.availableDisks.length > 0"}
+            }
+        },
+        "inspector": {
+            "prototype": "ui/inspectors/inspector.reel",
+            "properties": {
+                "element": {"#": "inspector"},
+                "canDelete": true,
+                "canRevert": true,
+                "canSave": true
+            }
+        },
+        "topology": {
+            "prototype": "ui/controls/topology.reel",
+            "properties": {
+                "element": {"#": "topology"},
+                "mode": "UPDATE"
+            },
+            "bindings": {
+                "object": {"<-": "@owner.topologyProxy"}
+            }
+        },
+
+        "availableDisks": {
+            "prototype": "ui/inspectors/available-disks.reel",
+            "properties": {
+                "element": {"#": "availableDisks"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.topologyProxy"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="TopologyEdit">
+        <div data-montage-id="inspector">
+            <div class="TopologyEdit-content">
+                <div data-montage-id="topology"></div>
+            </div>
+        </div>
+        <div class="TopologyEdit-sidebar">
+            <div data-montage-id="availableDisks"></div>
+        </div>
+    </div>
+</body>
+</html>

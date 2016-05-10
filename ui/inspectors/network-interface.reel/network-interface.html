@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="network-interface.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "interface_alias_converter": {
+            "prototype": "core/converter/interface-alias-converter"
+        },
+        "inspector": {
+            "prototype": "ui/inspectors/inspector.reel",
+            "properties": {
+                "element": {"#": "inspector"},
+                "canRevert": "true",
+                "canSave": "true"
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object"},
+                "canDelete": {"<-": "@owner.object.type != 'ETHER'"}
+            }
+        },
+        "overview": {
+            "prototype": "ui/controls/interface-overview.reel",
+            "properties": {
+                "element": {"#": "overview"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object"}
+            }
+        },
+        "enabledSubstitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "enabledSubstitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "!!@owner.object.id"}
+            }
+        },
+        "enabled": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "enabled"},
+                "label": "Enabled"
+            },
+            "bindings": {
+                "checked": {"<-": "@owner.object.enabled"}
+            }
+        },
+        "description": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "description"},
+                "label": "Description",
+                "placeholderValue": "add a description"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.name"}
+            }
+        },
+        "ip_address": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "ip_address"},
+                "label": "IPv4 Address",
+                "converter": {"@": "interface_alias_converter"}
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.dhcp ? @owner.dhcpAlias : @owner.staticIP"},
+                "enabled": {"<-": "!@owner.object.dhcp"},
+                "placeholderValue": {"<-": "!@owner.object.dhcp ? 'eg. 1.2.3.4/16' : ''"}
+            }
+        },
+        "dhcp": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "dhcp"},
+                "label": "DHCP"
+            },
+            "bindings": {
+                "checked": {"<->": "!!@owner.object.dhcp"}
+            }
+        },
+        "rtadv": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "rtadv"},
+                "label": "Auto-Configure IPv6"
+            },
+            "bindings": {
+                "checked": {"<->": "!!@owner.object.rtadv"}
+            }
+        },
+        "interfaceTypeSubstitution": {
+            "prototype": "montage/ui/substitution.reel",
+            "properties": {
+                "element": {"#": "interfaceTypeSubstitution"}
+            },
+            "bindings": {
+                "switchValue": {"<-": "@owner.object.type"}
+            }
+        },
+        "ether": {
+            "prototype": "./interface.reel",
+            "properties": {
+                "element": {"#": "ether"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object"}
+            }
+        },
+        "bridge": {
+            "prototype": "./bridge.reel",
+            "properties": {
+                "element": {"#": "bridge"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object.bridge"},
+                "memberOptions": {"<-": "@owner.interfaces.filter{type == 'ETHER'}"}
+            }
+        },
+        "lagg": {
+            "prototype": "./lagg.reel",
+            "properties": {
+                "element": {"#": "lagg"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object"},
+                "portOptions": {"<-": "@owner.interfaces.filter{type == 'ETHER'}"}
+            }
+        },
+        "vlan": {
+            "prototype": "./vlan.reel",
+            "properties": {
+                "element": {"#": "vlan"}
+            },
+            "bindings": {
+                "object": {"<-": "@owner.object.vlan"},
+                "parentOptions": {"<-": "@owner.interfaces.filter{type == 'ETHER' || type == 'LAGG'}"}
+            }
+        },
+        "aliasSection": {
+            "prototype": "ui/controls/foldable-section.reel",
+            "properties": {
+                "element": {"#": "aliasSection"},
+                "title": "Aliases"
+            }
+        },
+        "aliases": {
+            "prototype": "blue-shark/ui/multiple-select.reel",
+            "properties": {
+                "element": {"#": "aliases"},
+                "converter": {"@": "interface_alias_converter"},
+                "labelPath": "address + '/' + netmask",
+                "inputErrorMessage": "Please enter a valid IP address and netmask."
+            },
+            "bindings": {
+                "values": {"<->": "@owner.otherAliases"},
+                "enabled": {"<-": "!@owner.object.dhcp"},
+                "placeholderValue": {"<-": "!@owner.object.dhcp ? 'eg. 1.2.3.4/16' : ''"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="NetworkInterface">
+        <div data-montage-id="inspector">
+            <div data-montage-id="enabledSubstitution">
+                <div data-montage-id="overview" data-arg="true"></div>
+                <div data-montage-id="enabled" data-arg="false"></div>
+            </div>
+            <div data-montage-id="description"></div>
+            <div data-montage-id="ip_address"></div>
+            <div data-montage-id="dhcp"></div>
+            <div data-montage-id="rtadv"></div>
+            <div data-montage-id="interfaceTypeSubstitution">
+                <div data-montage-id="ether" data-arg="ETHER"></div>
+                <div data-montage-id="lagg" data-arg="LAGG"></div>
+                <div data-montage-id="vlan" data-arg="VLAN"></div>
+                <div data-montage-id="bridge" data-arg="BRIDGE"></div>
+            </div>
+            <div data-montage-id="aliasSection">
+                <div data-montage-id="aliases"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="topology-item.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            },
+            "bindings": {
+                "classList.has('has-items')": {"<-": "@controller.content.length > 0"},
+                "availableSize": {"<-": "@owner.vdevs.map{_availableSize}.sum()"},
+                "paritySize": {"<-": "@owner.vdevs.map{_paritySize}.sum()"},
+                "usedSize": {"<-": "@owner.vdevs.map{_usedSize}.sum()"},
+                "usableSize": {"<-": "@owner.availableSize + @owner.usedSize"},
+                "totalSize": {"<-": "@owner.usableSize + @owner.paritySize"}
+            }
+        },
+        "bytesConverter": {
+            "prototype": "montage/core/converter/bytes-converter"
+        },
+        "name": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "name"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.name"}
+            }
+        },
+        "usableSize": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "usableSize"},
+                "converter": {"@": "bytesConverter"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.usableSize"}
+            }
+        },
+        "allocationBar": {
+            "prototype": "ui/controls/allocation-bar.reel",
+            "properties": {
+                "element": {"#": "allocationBar"}
+            },
+            "bindings": {
+                "classList.has('is-visible')": {"<-": "@owner.hasAllocationBar"},
+                "totalSize": {"<-": "@owner.totalSize"},
+                "usedSize": {"<-": "@owner.usedSize"},
+                "paritySize": {"<-": "@owner.paritySize"}
+            }
+        },
+        "controller": {
+            "prototype": "montage/core/range-controller",
+            "bindings": {
+                "content": {"<-": "@owner.vdevs"}
+            }
+        },
+        "vdevsGrid": {
+            "prototype": "ui/controls/grid.reel",
+            "properties": {
+                "element": {"#": "vdevsGrid"},
+                "controller": {"@": "controller"},
+                "icon": "ui/controls/topology.reel/vdev.reel"
+            }
+        },
+        "dropZone": {
+            "prototype": "../topology-dropzone.reel",
+            "properties": {
+                "element": {"#": "drop-zone"},
+                "vDevController": {"@": "controller"}
+            },
+            "bindings": {
+                "identifier": {"<-": "@owner.gridIdentifier"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="TopologyItem">
+        <div class="TopologyItem-title">
+            <div>
+                <span data-montage-id="name"></span>
+                <span class="TopologyItemTitle-size">
+                    <span data-montage-id="usableSize"></span>
+                </span>
+            </div>
+            <div data-montage-id="drop-zone" class="TopologyItem-dropZone"></div>
+        </div>
+        <div data-montage-id="allocationBar" class="TopologyItem-allocationBar"></div>
+        <div class="TopologyItem-grid">
+            <div data-montage-id="vdevsGrid"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="main-navigation.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "repetition": {
+            "prototype": "montage/ui/repetition.reel",
+            "properties": {
+                "element": {"#": "repetition"},
+                "isSelectionEnabled": true,
+                "content": [
+                    {
+                        "value": "dashboard",
+                        "label": "Dashboard"
+                    },
+                    {
+                        "value": "storage",
+                        "label": "Storage"
+                    },
+                    {
+                        "value": "accounts",
+                        "label": "Accounts"
+                    },
+                    {
+                        "value": "network",
+                        "label": "Network"
+                    },
+                    {
+                        "value": "hardware",
+                        "label": "Hardware"
+                    },
+                    {
+                        "value": "system",
+                        "label": "System"
+                    },
+                    {
+                        "value": "services",
+                        "label": "Services"
+                    },
+                    {
+                        "value": "console",
+                        "label": "Console"
+                    },
+                    {
+                        "value": "calendar",
+                        "label": "Calendar"
+                    }
+                ]
+            }
+        },
+        "item": {
+            "prototype": "./main-navigation-item.reel",
+            "properties": {
+                "element": {"#": "item"}
+            },
+            "bindings": {
+                "iteration": {"<-": "@repetition:iteration"},
+                "iteration.selected": {"<->": "application.section == iteration.object.value"},
+                "title": {"<-": "iteration.object.label"},
+                "class": {"<-": "iteration.object.value"}
+            }
+        },
+        "preferences": {
+            "prototype": "montage/ui/button.reel",
+            "properties": {
+                "element": {"#": "preferences"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "owner"},
+                    "capture": false
+                }
+            ],
+            "bindings": {
+                "classList.has('selected')": {"<-": "application.section == 'preferences'"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="MainNavigation">
+        <div data-montage-id="repetition" class="MainNavigation-repetition">
+            <div data-montage-id="item" class="MainNavigation-item"></div>
+        </div>
+        <div data-montage-id="preferences" class="MainNavigation-preferences">
+            <svg>
+                <use xlink:href="#i-gear"/>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>

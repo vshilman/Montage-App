@@ -1,0 +1,51 @@
+.ScrollviewFooterWrapper .InspectorFooter {
+    background: #242628;
+    border-top: 1px solid rgba(255,255,255,.2);
+}
+
+.InspectorFooter {
+    margin-top: 1em;
+    padding: 1em;
+    display: none;
+    flex-shrink: 0;
+    justify-content: space-between;
+    margin: 0 -.5em;
+}
+
+.InspectorFooter-right {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.InspectorFooter .blueShark-Button {
+    display: none;
+    overflow: hidden;
+    max-width: 8em;
+}
+
+.InspectorFooter-delete.blueShark-Button {
+    color: rgb(200, 70, 70);
+    background: rgba(150, 36, 36,.1);
+    border: 1px solid rgb(150, 36, 36);
+    box-shadow: none;
+}
+
+.InspectorFooter-delete.blueShark-Button:hover {
+    color: #FFF;
+    background: rgb(150, 36, 36);
+    box-shadow: none;
+}
+
+
+/* States ---------------------------------- */
+
+.InspectorFooter.is-visible { display: flex; }
+
+.InspectorFooter-delete.is-visible,
+.InspectorFooter-revert.is-visible,
+.InspectorFooter-save.is-visible {
+    display: block;
+    margin-left:  .5em !important;
+}
+

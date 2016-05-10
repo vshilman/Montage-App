@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="topologizer.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"},
+                "handleElement": {"#": "handle"},
+                "triangleElement": {"#": "triangle"}
+            }
+        },
+        "profiles": {
+            "prototype": "blue-shark/ui/select.reel",
+            "properties": {
+                "element": {"#": "profiles"},
+                "optionsMaxHeight": 200,
+                "options": [
+                    { "label": "Select a profile",  "value": ""},
+                    { "label": "Media",             "value": "MEDIA" },
+                    { "label": "Virtualization",    "value": "VIRTUALIZATION" },
+                    { "label": "Backup",            "value": "BACKUP" },
+                    { "label": "Optimal",           "value": "OPTIMAL" }
+                ]
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.profile"}
+            }
+        },
+        "speedScore": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "speedScore"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.barycentricValues.1"},
+                "classList.has('is-first-priority')": {"<-": "@owner.priorities.0 == 'speed'"},
+                "classList.has('is-second-priority')": {"<-": "@owner.priorities.1 == 'speed'"}
+            }
+        },
+        "storageScore": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "storageScore"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.barycentricValues.2"},
+                "classList.has('is-first-priority')": {"<-": "@owner.priorities.0 == 'storage'"},
+                "classList.has('is-second-priority')": {"<-": "@owner.priorities.1 == 'storage'"}
+            }
+        },
+        "redundancyScore": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "element": {"#": "redundancyScore"}
+            },
+            "bindings": {
+                "value": {"<-": "@owner.barycentricValues.0"},
+                "classList.has('is-first-priority')": {"<-": "@owner.priorities.0 == 'redundancy'"},
+                "classList.has('is-second-priority')": {"<-": "@owner.priorities.1 == 'redundancy'"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="Topologizer">
+        <div class="Topologizer-graph">
+            <div data-montage-id="triangle" class="Topologizer-triangle">
+                <svg width="124" height="108" viewBox="0 0 124 108" xmlns="http://www.w3.org/2000/svg">
+                    <title>topologizer</title>
+                    <g fill="none" fill-rule="evenodd">
+                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M62 7l55 95H7z"/>
+                    <path class="Topologizer-color-speed" d="M62 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z" stroke="#2E74C6" stroke-width="3" fill="#529CF3"/>
+                    <path class="Topologizer-color-storage" d="M117 106c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z" stroke="#87508F" stroke-width="3" fill="#BB78C5"/>
+                    <path class="Topologizer-color-redundancy" d="M7 106c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z" stroke="#92650B" stroke-width="3" fill="#DE9B16"/></g></svg>
+                <div data-montage-id="handle" class="Topologizer-handle"></div>
+            </div>
+        </div>
+        <div class="Topologizer-legend">
+            <div data-montage-id="profiles" class="Topologizer-profiles g-margin-bottom"></div>
+            <div class="Topologizer-legend-item">
+                <span class="Topologizer-legend-item-marker Topologizer-color-speed"></span>
+                <span class="Topologizer-legend-item-label">Speed</span>
+                <span class="Topologizer-legend-item-score" data-montage-id="speedScore"></span>
+            </div>
+            <div class="Topologizer-legend-item">
+                <span class="Topologizer-legend-item-marker Topologizer-color-storage"></span>
+                <span class="Topologizer-legend-item-label">Storage</span>
+                <span class="Topologizer-legend-item-score" data-montage-id="storageScore"></span>
+            </div>
+            <div class="Topologizer-legend-item">
+                <span class="Topologizer-legend-item-marker Topologizer-color-redundancy"></span>
+                <span class="Topologizer-legend-item-label">Redundancy</span>
+                <span class="Topologizer-legend-item-score" data-montage-id="redundancyScore"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

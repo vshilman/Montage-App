@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="smb-service.css">
+    <script type="text/montage-serialization">
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "owner"}
+            }
+        },
+        "netbiosName": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "netbiosName"},
+                "label": "NetBIOS Name"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.netbiosname || @owner.systemGeneral.hostname"}
+            }
+        },
+        "workgroup": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "workgroup"},
+                "label": "NetBIOS Name"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.workgroup"}
+            }
+        },
+        "description": {
+            "prototype": "blue-shark/ui/field-text-input.reel",
+            "properties": {
+                "element": {"#": "description"},
+                "label": "Workgroup"
+            },
+            "bindings": {
+                "value": {"<->": "@owner.object.description"}
+            }
+        },
+        "dosCharset": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "dosCharset"},
+                "label": "DOS charset"
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.object.dos_charset"},
+                "options": {"<-": "@owner.DOS_CHARSETS"}
+            }
+        },
+        "unixCharset": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "unixCharset"},
+                "label": "UNIX charset"
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.object.unix_charset"},
+                "options": {"<-": "@owner.UNIX_CHARSETS"}
+            }
+        },
+        "logLevel": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "logLevel"},
+                "label": "Log level"
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.object.log_level"},
+                "options": {"<-": "@owner.LOG_LEVELS"}
+            }
+        },
+        "syslog": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "syslog"},
+                "label": "Use syslog only"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.syslog"}
+            }
+        },
+        "localMaster": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "localMaster"},
+                "label": "Local master"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.local_master"}
+            }
+        },
+        "domainLogons": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "domainLogons"},
+                "label": "Domain logons"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.domain_logons"}
+            }
+        },
+        "timeServer": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "timeServer"},
+                "label": "Time server for domain"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.time_server"}
+            }
+        },
+        "usersToOptionsConverter": {
+            "prototype": "core/converter/select-option-converter",
+            "properties": {
+                "labelPropertyName": "username",
+                "valuePropertyName": "username"
+            }
+        },
+        "guestUser": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "guestUser"},
+                "label": "Guest account",
+                "converter": {"@": "usersToOptionsConverter"}
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.object.guest_user"},
+                "options": {"<-": "@owner.users"}
+            }
+        },
+        "fileMask": {
+            "prototype": "ui/controls/unixPermissions.reel",
+            "properties": {
+                "element": {"#": "fileMask"},
+                "title": "File mask"
+            },
+            "bindings": {
+                "modes": {"<->": "@owner.filemaskModes"}
+            }
+        },
+        "directoryMask": {
+            "prototype": "ui/controls/unixPermissions.reel",
+            "properties": {
+                "element": {"#": "directoryMask"},
+                "title": "Directory mask"
+            },
+            "bindings": {
+                "modes": {"<->": "@owner.dirmaskModes"}
+            }
+        },
+        "emptyPassword": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "emptyPassword"},
+                "label": "Allow empty password"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.empty_password"}
+            }
+        },
+        "unixExtensions": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "unixExtensions"},
+                "label": "Unix extensions"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.unixext"}
+            }
+        },
+        "zeroconf": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "zeroconf"},
+                "label": "Zeroconf share discovery"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.zeroconf"}
+            }
+        },
+        "hostLookup": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "hostLookup"},
+                "label": "Hostnames lookups"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.hostlookup"}
+            }
+        },
+        "minProtocol": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "minProtocol"},
+                "label": "Server minimum protocol",
+                "hasOptionalValue": true
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.object.min_protocol"},
+                "options": {"<-": "@owner.PROTOCOLS"}
+
+            }
+        },
+        "maxProtocol": {
+            "prototype": "blue-shark/ui/field-select.reel",
+            "properties": {
+                "element": {"#": "maxProtocol"},
+                "label": "Server maximum protocol"
+            },
+            "bindings": {
+                "selectedValue": {"<->": "@owner.object.max_protocol"},
+                "options": {"<-": "@owner.PROTOCOLS"}
+            }
+        },
+        "executeAlways": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "executeAlways"},
+                "label": "Allow execute always"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.execute_always"}
+            }
+        },
+        "obeyPamRestrictions": {
+            "prototype": "blue-shark/ui/field-checkbox.reel",
+            "properties": {
+                "element": {"#": "obeyPamRestrictions"},
+                "label": "Obey PAM restrictions"
+            },
+            "bindings": {
+                "checked": {"<->": "@owner.object.obey_pam_restrictions"}
+            }
+        },
+
+        "bindAddresses": {
+            "prototype": "blue-shark/ui/multiple-select.reel",
+            "properties": {
+                "element": {"#": "bindAddresses"},
+                "label": "Bind IP Addresses",
+                "placeholderValue": "eg. 1.2.3.4",
+                "delegate": {"@": "owner"}
+            },
+            "bindings": {
+                "options": {"<-": "@owner.networkInterfacesAliases.map{address}.filter{!@owner.object.bind_addresses.has(this)}"},
+                "values": {"<->": "@owner.object.bind_addresses"}
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div data-montage-id="owner" class="SmbService">
+        <div data-montage-id="netbiosName"></div>
+        <div data-montage-id="workgroup"></div>
+        <div data-montage-id="description"></div>
+        <div data-montage-id="dosCharset"></div>
+        <div data-montage-id="unixCharset"></div>
+        <div data-montage-id="logLevel"></div>
+        <div data-montage-id="syslog"></div>
+        <div data-montage-id="localMaster"></div>
+        <div data-montage-id="domainLogons"></div>
+        <div data-montage-id="timeServer"></div>
+        <div data-montage-id="guestUser"></div>
+        <div data-montage-id="fileMask"></div>
+        <div data-montage-id="directoryMask"></div>
+        <div data-montage-id="emptyPassword"></div>
+        <div data-montage-id="unixExtensions"></div>
+        <div data-montage-id="zeroconf"></div>
+        <div data-montage-id="hostLookup"></div>
+        <div data-montage-id="minProtocol"></div>
+        <div data-montage-id="maxProtocol"></div>
+        <div data-montage-id="executeAlways"></div>
+        <div data-montage-id="obeyPamRestrictions"></div>
+        <div data-montage-id="bindAddresses"></div>
+    </div>
+</body>
+</html>
